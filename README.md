@@ -4,7 +4,7 @@
 
 ## 编译 
 #### 1.需要自己做个图标命名为icon.png放到同一目录<br />
-#### 2.安装所有python依赖<br />
+#### 2.安装程序需要的python依赖<br />
 #### 3.编译命令<br />
 ```
 pyinstaller --onefile --windowed --add-data "icon.png;." wallpaper_app.py
