@@ -58,7 +58,7 @@ class WallpaperApp(QMainWindow):
         container.setLayout(layout)
         self.setCentralWidget(container)
 
-        # 调整线程优先级
+        # 调整线程优 先级
         self.adjust_priority()
 
     def adjust_priority(self):
