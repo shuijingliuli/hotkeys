@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 
 
 class HotSearchScraper:
-    def __init__(self, api_list, debug=0, sender_email=None, receiver_email=None, password=None):
+    def __init__(self, api_list, debug=0):
         self.api_list = api_list
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
@@ -98,13 +98,13 @@ class HotSearchScraper:
 
     def send_alert_email(self):
         if self.sender_email and self.receiver_email and self.password:
-            msg = MIMEText('github热搜API告警：所有热搜 API 请求均失败，请检查网络或 API 状态。')
-            msg['Subject'] = 'GitHub热搜 API 请求失败告警'
+            msg = MIMEText('所有热搜 API 请求均失败，请检查网络或 API 状态。')
+            msg['Subject'] = '热搜 API 请求失败告警'
             msg['From'] = self.sender_email
             msg['To'] = self.receiver_email
 
             try:
-                server = smtplib.SMTP_SSL('smtp.qq.com', 465)   
+                server = smtplib.SMTP_SSL('smtp.qq.com', 465)
                 server.login(self.sender_email, self.password)
                 server.sendmail(self.sender_email, self.receiver_email, msg.as_string())
                 server.quit()
@@ -192,13 +192,9 @@ if __name__ == "__main__":
             "parser": "parse_douyin"
         }
     ]
-
-    debug = 0  # 可修改为 0 以关闭调试模式
-    sender_email = os.environ.get('MAIL_SENDER')
-    receiver_email = os.environ.get('MAIL_RECEIVER')
-    password = os.environ.get('MAIL_PASSWORD')
-
-    scraper = HotSearchScraper(API_CONFIG, debug, sender_email, receiver_email, password)
+    debug = 0  # 生产环境建议关闭调试模式
+    # 移除多余的参数
+    scraper = HotSearchScraper(API_CONFIG, debug)
     hot_terms = scraper.process()
 
     output_dir = "hot_data"
@@ -208,4 +204,3 @@ if __name__ == "__main__":
         json.dump(hot_terms, f, ensure_ascii=False, indent=2)
 
     print(f"Successfully saved {len(hot_terms)} unique hot terms to {filename}")
-    
