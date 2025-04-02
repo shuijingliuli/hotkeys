@@ -98,8 +98,8 @@ class HotSearchScraper:
 
     def send_alert_email(self):
         if self.sender_email and self.receiver_email and self.password:
-            msg = MIMEText('所有热搜 API 请求均失败，请检查网络或 API 状态。')
-            msg['Subject'] = '热搜 API 请求失败告警'
+            msg = MIMEText('GitHub所有热搜 API 请求均失败，请检查网络或 API 状态。')
+            msg['Subject'] = 'GitHub热搜 API 请求失败告警'
             msg['From'] = self.sender_email
             msg['To'] = self.receiver_email
 
@@ -129,7 +129,7 @@ class HotSearchScraper:
                 continue
 
             if data:
-                all_failed = True
+                all_failed = False
 
             if not data:
                 continue
