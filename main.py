@@ -5,6 +5,7 @@ from difflib import SequenceMatcher
 from datetime import datetime
 import smtplib
 from email.mime.text import MIMEText
+import pytz
 
 
 class HotSearchScraper:
@@ -200,8 +201,9 @@ if __name__ == "__main__":
     output_dir = "."
     os.makedirs(output_dir, exist_ok=True)
     filename = "hotkeys.json"
-        # 获取当前时间
-    update_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # 获取当前北京时间
+    beijing_tz = pytz.timezone('Asia/Shanghai')
+    update_time = datetime.now(beijing_tz).strftime("%Y-%m-%d %H:%M:%S")
     # 创建包含更新时间和热搜词条的字典
     data = {
         "update_time": update_time,
