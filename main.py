@@ -129,7 +129,7 @@ class HotSearchScraper:
                 continue
 
             if data:
-                all_failed = False
+                all_failed = True
 
             if not data:
                 continue
