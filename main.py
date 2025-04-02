@@ -208,7 +208,7 @@ if __name__ == "__main__":
         "titles": hot_terms
     }
     with open(os.path.join(output_dir, filename), "w", encoding="utf-8") as f:
-        json.dump(hot_terms, f, ensure_ascii=False, indent=2)
+        json.dump(data, f, ensure_ascii=False, indent=2)
 
     print(f"Successfully saved {len(hot_terms)} unique hot terms to {filename}")
     
