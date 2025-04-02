@@ -7,10 +7,6 @@ import smtplib
 from email.mime.text import MIMEText
 
 
-sender_email = os.environ.get('MAIL_SENDER')
-receiver_email = os.environ.get('MAIL_RECEIVER')
-password = os.environ.get('MAIL_PASSWORD')
-
 class HotSearchScraper:
     def __init__(self, api_list, debug=0):
         self.api_list = api_list
@@ -18,7 +14,9 @@ class HotSearchScraper:
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
         }
         self.debug = debug
-
+        self.sender_email = os.environ.get('MAIL_SENDER')
+        self.receiver_email = os.environ.get('MAIL_RECEIVER')
+        self.password = os.environ.get('MAIL_PASSWORD')
 
     def fetch_data(self, urls):
         for url in urls:
@@ -107,8 +105,8 @@ class HotSearchScraper:
 
             try:
                 server = smtplib.SMTP_SSL('smtp.qq.com', 465)
-                server.login(sender_email, password)
-                server.sendmail(sender_email, receiver_email, msg.as_string())
+                server.login(self.sender_email, self.password)
+                server.sendmail(self.sender_email, self.receiver_email, msg.as_string())
                 server.quit()
                 print("告警邮件已发送。")
             except Exception as e:
@@ -206,3 +204,4 @@ if __name__ == "__main__":
         json.dump(hot_terms, f, ensure_ascii=False, indent=2)
 
     print(f"Successfully saved {len(hot_terms)} unique hot terms to {filename}")
+    
