@@ -42,11 +42,11 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add hot_search_terms.json
+          git add hotkeys.json
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "Update hot_search_terms.json"
+            git commit -m "Update hotkeys.json"
             # 使用普通的 git pull 并自动合并更改
             git pull origin main --no-edit
             git push origin main
