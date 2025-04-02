@@ -204,4 +204,3 @@ if __name__ == "__main__":
         json.dump(hot_terms, f, ensure_ascii=False, indent=2)
 
     print(f"Successfully saved {len(hot_terms)} unique hot terms to {filename}")
-    
