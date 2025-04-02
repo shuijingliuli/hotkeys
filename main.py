@@ -197,7 +197,7 @@ if __name__ == "__main__":
     scraper = HotSearchScraper(API_CONFIG, debug)
     hot_terms = scraper.process()
 
-    output_dir = "hot_data"
+    output_dir = "."
     os.makedirs(output_dir, exist_ok=True)
     filename = "hot_search_terms.json"
     with open(os.path.join(output_dir, filename), "w", encoding="utf-8") as f:
