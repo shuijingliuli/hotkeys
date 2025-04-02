@@ -199,7 +199,14 @@ if __name__ == "__main__":
 
     output_dir = "."
     os.makedirs(output_dir, exist_ok=True)
-    filename = "hot_search_terms.json"
+    filename = "hotkeys.json"
+        # 获取当前时间
+    update_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # 创建包含更新时间和热搜词条的字典
+    data = {
+        "update_time": update_time,
+        "hot_terms": title
+    }
     with open(os.path.join(output_dir, filename), "w", encoding="utf-8") as f:
         json.dump(hot_terms, f, ensure_ascii=False, indent=2)
 
