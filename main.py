@@ -193,7 +193,7 @@ if __name__ == "__main__":
         }
     ]
     debug = 0  # 生产环境建议关闭调试模式
-    # 移除多余的参数
+    # 只传入必要的参数
     scraper = HotSearchScraper(API_CONFIG, debug)
     hot_terms = scraper.process()
 
@@ -204,3 +204,4 @@ if __name__ == "__main__":
         json.dump(hot_terms, f, ensure_ascii=False, indent=2)
 
     print(f"Successfully saved {len(hot_terms)} unique hot terms to {filename}")
+    
