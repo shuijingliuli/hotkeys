@@ -29,6 +29,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install requests
+          pip install pytz
 
       - name: Run script
         env:
