@@ -205,7 +205,7 @@ if __name__ == "__main__":
     # 创建包含更新时间和热搜词条的字典
     data = {
         "update_time": update_time,
-        "hot_terms": title
+        "titles": hot_terms
     }
     with open(os.path.join(output_dir, filename), "w", encoding="utf-8") as f:
         json.dump(hot_terms, f, ensure_ascii=False, indent=2)
