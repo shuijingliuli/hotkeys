@@ -11,6 +11,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 赋予写入权限
 
     steps:
       - name: Checkout code
@@ -47,4 +49,3 @@ jobs:
             git commit -m "Update hot_search_terms.json"
             git push origin main
           fi
-    
