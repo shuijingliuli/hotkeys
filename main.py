@@ -194,6 +194,9 @@ if __name__ == "__main__":
     ]
 
     debug = 0  # 可修改为 0 以关闭调试模式
+    sender_email = os.environ.get('MAIL_SENDER')
+    receiver_email = os.environ.get('MAIL_RECEIVER')
+    password = os.environ.get('MAIL_PASSWORD')
 
     scraper = HotSearchScraper(API_CONFIG, debug, sender_email, receiver_email, password)
     hot_terms = scraper.process()
