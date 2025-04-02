@@ -1,4 +1,4 @@
-name: Test Workflow
+name: HotKeys Workflow
 
 on:
   push:
@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -23,16 +26,25 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests 
+          pip install requests
 
-      - name: Run tests
+      - name: Run script
         env:
           MAIL_SENDER: ${{ secrets.MAIL_SENDER }}
           MAIL_RECEIVER: ${{ secrets.MAIL_RECEIVER }}
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
         run: |
           python main.py
-    
-      - name: List files in working directory
+
+      - name: Commit and push changes
         run: |
-          ls -R
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add hot_search_terms.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update hot_search_terms.json"
+            git push origin main
+          fi
+    
