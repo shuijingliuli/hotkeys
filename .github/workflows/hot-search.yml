@@ -33,3 +33,8 @@ jobs:
         run: |
           python main.py
     
+      - name: Deploy to GitHub Pages
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./hot_data
+          force_orphan: true
