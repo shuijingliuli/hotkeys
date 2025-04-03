@@ -2,7 +2,7 @@ name: HotKeys Workflow
 
 on:
   schedule:
-    - cron: '20 */1 * * *'  # UTC 16:00 → 北京时间 00:00
+    - cron: '20 */4 * * *'  # UTC 16:00 → 北京时间 00:00
 
 
 jobs:
