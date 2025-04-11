@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>微软积分-Microsoft-Rewards-自动获取脚本</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="jEodV34xQCrPOQJwQBjNL8hdNA5dnYrgbGSDV34fNqo" />
+    <meta name="description"
+        content="微软积分自动,微软必应积分，微软浏览器积分,必应刷积分,微软积分自动,微软积分,如何获得 Microsoft Rewards 积分,微软工具箱,通过 Microsoft 获得奖励,microsoft积分商城,Microsoft Rewards赚取点数的快速办法,微软积分官网,必应积分,微软积分查看,Microsoft Rewards,微软Rewards,探秘Microsoft Rewards Farmer,Microsoft Rewards赚取点数的快速办法">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,
+    <svg t='1718960230425' class='icon' viewBox='0 0 1026 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='7086' width='200' height='200'>
+      <path d='M485.84636 1.996086H1.996086v483.850274h483.850274z' fill='%23F26522' p-id='7087'></path>
+      <path d='M1020 1.996086H536.149726v483.850274H1020z' fill='%238DC63F' p-id='7088'></path>
+      <path d='M485.84636 536.149726H1.996086V1020h483.850274z' fill='%2300AEEF' p-id='7089'></path>
+      <path d='M1020 536.149726H536.149726V1020H1020z' fill='%23FFC20E' p-id='7090'></path>
+    </svg>">
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // 尝试使用 Wake Lock API
+            try {
+                if ('wakeLock' in navigator) {
+                    const wakeLock = await navigator.wakeLock.request('screen');
+                    console.log('Screen Wake Lock is active');
+
+                    // 在页面卸载时释放锁定
+                    window.addEventListener('beforeunload', () => {
+                        wakeLock.release();
+                        console.log('Screen Wake Lock released');
+                    });
+                    
+                    // 当页面可见性改变时重新请求锁
+                    document.addEventListener('visibilitychange', async () => {
+                        if (document.visibilityState === 'visible' && wakeLock.released) {
+                            try {
+                                await navigator.wakeLock.request('screen');
+                                console.log('Screen Wake Lock reacquired');
+                            } catch (err) {
+                                console.error('Failed to reacquire Wake Lock:', err);
+                            }
+                        }
+                    });
+                } else {
+                    console.log('Wake Lock API not supported, using fallback method');
+                    useKeepAwakeFallback();
+                }
+            } catch (err) {
+                console.error('Wake Lock is not supported or not granted:', err);
+                useKeepAwakeFallback();
+            }
+            
+            // 备用方法：使用定时器和视频播放保持屏幕常亮
+            function useKeepAwakeFallback() {
+                // 创建一个不可见的视频元素
+                const video = document.createElement('video');
+                video.setAttribute('playsinline', '');
+                video.setAttribute('muted', '');
+                video.setAttribute('loop', '');
+                video.style.width = '1px';
+                video.style.height = '1px';
+                video.style.position = 'absolute';
+                video.style.opacity = '0.01';
+                
+                // 创建一个空白视频源
+                const source = document.createElement('source');
+                source.setAttribute('src', 'data:video/mp4;base64,AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDEAAAAIZnJlZQAAA7RtZGF0AAACrQYF//+p3EXpvebZSLeWLNgg2SPu73gyNjQgLSBjb3JlIDE0MiByMjQ3OSBkZDc5YTYxIC0gSC4yNjQvTVBFRy00IEFWQyBjb2RlYyAtIENvcHlsZWZ0IDIwMDMtMjAxNCAtIGh0dHA6Ly93d3cudmlkZW9sYW4ub3JnL3gyNjQuaHRtbCAtIG9wdGlvbnM6IGNhYmFjPTEgcmVmPTMgZGVibG9jaz0xOjA6MCBhbmFseXNlPTB4MzoweDExMyBtZT1oZXggc3VibWU9NyBwc3k9MSBwc3lfcmQ9MS4wMDowLjAwIG1peGVkX3JlZj0xIG1lX3JhbmdlPTE2IGNocm9tYV9tZT0xIHRyZWxsaXM9MSA4eDhkY3Q9MSBjcW09MCBkZWFkem9uZT0yMSwxMSBmYXN0X3Bza2lwPTEgY2hyb21hX3FwX29mZnNldD0tMiB0aHJlYWRzPTEgbG9va2FoZWFkX3RocmVhZHM9MSBzbGljZWRfdGhyZWFkcz0wIG5yPTAgZGVjaW1hdGU9MSBpbnRlcmxhY2VkPTAgYmx1cmF5X2NvbXBhdD0wIGNvbnN0cmFpbmVkX2ludHJhPTAgYmZyYW1lcz0zIGJfcHlyYW1pZD0yIGJfYWRhcHQ9MSBiX2JpYXM9MCBkaXJlY3Q9MSB3ZWlnaHRiPTEgb3Blbl9nb3A9MCB3ZWlnaHRwPTIga2V5aW50PTI1MCBrZXlpbnRfbWluPTEwIHNjZW5lY3V0PTQwIGludHJhX3JlZnJlc2g9MCByY19sb29rYWhlYWQ9NDAgcmM9Y3JmIG1idHJlZT0xIGNyZj0yMy4wIHFjb21wPTAuNjAgcXBtaW49MCBxcG1heD02OSBxcHN0ZXA9NCBpcF9yYXRpbz0xLjQwIGFxPTE6MS4wMACAAAAAD2WIhAA3//728P4FNjuZQQAAAu5tb292AAAAbG12aGQAAAAAAAAAAAAAAAAAAAPoAAAAZAABAAABAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAACGHRyYWsAAABcdGtoZAAAAAMAAAAAAAAAAAAAAAEAAAAAAAAAZAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAEAAAAAAAgAAAAIAAAAAACRlZHRzAAAAHGVsc3QAAAAAAAAAAQAAAGQAAAAAAAEAAAAAAZBtZGlhAAAAIG1kaGQAAAAAAAAAAAAAAAAAACgAAAAEAFXEAAAAAAAtaGRscgAAAAAAAAAAdmlkZQAAAAAAAAAAAAAAAFZpZGVvSGFuZGxlcgAAAAE7bWluZgAAABR2bWhkAAAAAQAAAAAAAAAAAAAAJGRpbmYAAAAcZHJlZgAAAAAAAAABAAAADHVybCAAAAABAAAA+3N0YmwAAACXc3RzZAAAAAAAAAABAAAAh2F2YzEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAgACAEgAAABIAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY//8AAAAxYXZjQwFkAAr/4QAYZ2QACqzZX4iIhAAAAwAEAAADAFA8SJZYAQAGaOvjyyLAAAAAGHN0dHMAAAAAAAAAAQAAAAEAAAQAAAAAHHN0c2MAAAAAAAAAAQAAAAEAAAABAAAAAQAAABRzdHN6AAAAAAAAAsUAAAABAAAAFHN0Y28AAAAAAAAAAQAAADAAAABidWR0YQAAAFptZXRhAAAAAAAAACFoZGxyAAAAAAAAAABtZGlyYXBwbAAAAAAAAAAAAAAAAC1pbHN0AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU2LjQwLjEwMQ==');
+                source.setAttribute('type', 'video/mp4');
+                video.appendChild(source);
+                
+                document.body.appendChild(video);
+                
+                // 尝试播放视频
+                video.play().catch(e => console.error('Video play failed:', e));
+                
+                // 使用定时器定期执行一些操作，防止系统休眠
+                const keepAliveInterval = setInterval(() => {
+                    // 执行一些轻量级操作
+                    const now = new Date().getTime();
+                    console.log('Keep alive ping at:', now);
+                    
+                    // 确保视频仍在播放
+                    if (video.paused) {
+                        video.play().catch(e => console.error('Video play retry failed:', e));
+                    }
+                }, 15000); // 每15秒执行一次
+                
+                // 页面卸载时清理
+                window.addEventListener('beforeunload', () => {
+                    clearInterval(keepAliveInterval);
+                    if (video && video.parentNode) {
+                        video.pause();
+                        document.body.removeChild(video);
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="scripts.js" defer></script>
+    <script>(function (d, z, s) { s.src = 'https://' + d + '/400/' + z; try { (document.body || document.documentElement).appendChild(s) } catch (e) { } })('aupoafto.com', 8143463, document.createElement('script'))</script>
+</head>
+
+<body>
+    <main>
+        <div class="search-info">
+            <div>当前设备：<span id="device-type">检测中...</span></div>
+            <div>当前搜索词：<span id="current-search-word">等待倒计时结束...</span></div>
+            <div>启动自动搜索中：<span id="countdown-timer">加载中...</span></div>
+            <div>本轮已完成搜索：<span id="completed-searches">0</span> 次</div>
+            <div>总计已完成搜索：<span id="total-searches">0</span> 次</div>
+        </div>
+        <div class="button-container">
+            <button id="start-button" title="点击开始自动搜索">开始搜索</button>
+            <button id="stop-button" title="点击停止自动搜索">停止搜索</button>
+            <button id="exception-button" title="点击切换到异常模式">异常模式</button>
+            <button id="deleteDataButton" title="点击清空计数数据">清空计数</button>
+        </div>
+        <h2>搜索历史</h2>
+        <div id="search-history"></div>
+        <div id="popup">
+            在&nbsp;浏&nbsp;览&nbsp;器&nbsp;任&nbsp;意&nbsp;网&nbsp;页<br><br>
+            <a href="https://login.microsoftonline.com/">登&nbsp;录&nbsp;到&nbsp;微&nbsp;软&nbsp;账&nbsp;户&nbsp;</a>后<br><br>
+            每&nbsp;天&nbsp;打&nbsp;开&nbsp;<a href="https://shuijingliuli.github.io/">当&nbsp;前&nbsp;网&nbsp;址</a><br><br>
+            放&nbsp;置&nbsp;等&nbsp;8&nbsp;分&nbsp;钟&nbsp;即&nbsp;可<br><br>
+            自&nbsp;动&nbsp;搜&nbsp;索&nbsp;获&nbsp;取&nbsp;积&nbsp;分<br><br>
+            手&nbsp;机&nbsp;电&nbsp;脑&nbsp;均&nbsp;可&nbsp;使&nbsp;用<br><br>
+        </div>
+    </main>
+    <script src="https://lingtu.gitlab.io/links.js" defer></script>
+    <script>
+
+    </script>
+</body>
+
+</html>

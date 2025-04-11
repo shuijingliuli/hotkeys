@@ -1,0 +1,165 @@
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    background-color: #1e1e1e;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    max-width: 1100px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#popup {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: auto;
+    max-width: 280px;
+    padding: 15px;
+    background-color: rgba(47, 54, 60, 0.95);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    z-index: 999;
+    color: #f0f0f0;
+    line-height: 1.2;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+#popup a {
+    color: #ffb800;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+#popup a:hover {
+    color: #ffd54f;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    #popup {
+        bottom: 10px;
+        right: 10px;
+        max-width: 220px;
+        font-size: 12px;
+        padding: 12px;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: #1e9fff;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+h1,
+h2 {
+    color: #ffffff;
+}
+
+.search-info {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background-color: #242424;
+}
+
+.search-info div {
+    margin-bottom: 10px;
+}
+
+.search-info div span {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+    width: 160px;
+}
+
+button {
+    font-weight: bold;
+    padding: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffffff;
+    transition: transform 0.2s ease, filter 0.3s ease;
+    filter: brightness(80%);
+    margin: 0;
+    width: 75px;
+    height: 75px;
+    box-sizing: border-box;
+}
+
+#start-button {
+    background-color: #7FBA00;
+}
+
+#stop-button {
+    background-color: #FF3B30;
+}
+
+#exception-button {
+    background-color: #FFA500;
+}
+
+#deleteDataButton {
+    background-color: #00A1F1;
+}
+
+#search-history {
+    margin-top: 20px;
+}
+
+.search-history-item {
+    padding: 15px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background-color: #242424;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.search-history-item p {
+    margin: 0;
+    color: #e0e0e0;
+}
+
+.search-history-item iframe {
+    width: 100%;
+    height: auto;
+    border: none;
+}
+
+#countdown-timer {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFA500;
+    margin-top: 10px;
+}
+
+button:hover {
+    transform: scale(1.025);
+    filter: brightness(100%);
+}
