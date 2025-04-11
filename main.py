@@ -94,7 +94,7 @@ class HotSearchScraper:
     def filter_terms(self, terms):
         if self.debug:
             print("正在过滤词条，保留长度不少于 5 个字符的词条，并最多保留 100 条...")
-        filtered_terms = [term for term in terms if len(term) >= 5]
+        filtered_terms = [term for term in terms if len(term) > 8]
         return filtered_terms[:100]
 
     def send_alert_email(self):
