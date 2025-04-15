@@ -1,0 +1,5 @@
+# _config.yml
+headers:
+  "/hotkeys.json":
+    - key: Access-Control-Allow-Origin
+      value: *
