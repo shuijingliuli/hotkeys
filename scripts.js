@@ -279,14 +279,6 @@ function initializeCountdown() {
 
 // 页面加载时的操作
 if (document.getElementById("total-searches").textContent = totalSearches,
-    window.onload = function () {
-        const popup = document.getElementById("popup");
-        const closeBtn = document.getElementById("close-btn");
-        popup.style.display = "block";
-        setTimeout(() => {
-            popup.style.display = "none";
-        }, 8000);
-    },
     document.addEventListener("DOMContentLoaded", () => {
         initializeCountdown();
         detectDevice();
