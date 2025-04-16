@@ -15,46 +15,7 @@ main {
     overflow: hidden;
 }
 
-#popup {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: auto;
-    max-width: 280px;
-    padding: 15px;
-    background-color: rgba(47, 54, 60, 0.95);
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    text-align: left;
-    z-index: 999;
-    color: #f0f0f0;
-    line-height: 1.2;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-}
 
-#popup a {
-    color: #ffb800;
-    font-weight: bold;
-    transition: color 0.2s ease;
-}
-
-#popup a:hover {
-    color: #ffd54f;
-    text-decoration: none;
-}
-
-@media (max-width: 768px) {
-    #popup {
-        bottom: 10px;
-        right: 10px;
-        max-width: 220px;
-        font-size: 12px;
-        padding: 12px;
-    }
-}
 
 a {
     text-decoration: none;
