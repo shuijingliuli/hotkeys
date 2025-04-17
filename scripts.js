@@ -214,7 +214,7 @@ async function startAutoSearch() {
                     setTimeout(() => {
                         window.location.href = "https://lingtu.gitlab.io/";
                     }, 6000);
-                } else if (completedSearches % 4 === 0) {
+                } else if (completedSearches % 3 === 0) {
                     setTimeout(() => {
                         window.location.reload();
                     }, 8000);
