@@ -36,10 +36,10 @@ function detectDevice() {
     const deviceTypeElement = document.getElementById("device-type");
     if (isMobile) {
         deviceTypeElement.textContent = "移动设备";
-        localStorage.setItem("maxStops", getRandomInt(22, 26).toString());
+        localStorage.setItem("maxStops", getRandomInt(21, 24).toString());
     } else {
         deviceTypeElement.textContent = "电脑设备";
-        localStorage.setItem("maxStops", getRandomInt(32, 36).toString());
+        localStorage.setItem("maxStops", getRandomInt(30, 33).toString());
     }
 }
 
