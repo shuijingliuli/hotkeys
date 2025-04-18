@@ -23,8 +23,11 @@ let countdownMax = 80;
 const hotkeysFilePath = "hotkeys.json";
 // 倒计时 worker
 let countdownWorker;
-let searchNum = getRandomInt(4,5);
-console.log(`页面刷新将在${searchNum}次搜索后`);
+// 获取searchNum，如果存在则切换值（3变4，4变3），如果不存在则初始化为3
+let searchNum = localStorage.getItem("searchNum") ? (parseInt(localStorage.getItem("searchNum")) === 3 ? 4 : 3) : 3;
+// 保存当前的searchNum值到localStorage
+localStorage.setItem("searchNum", searchNum.toString());
+console.log(`将在${searchNum}次搜索后刷新页面`);
 
 // 生成指定范围内的随机整数
 function getRandomInt(min, max) {
@@ -38,10 +41,10 @@ function detectDevice() {
     const deviceTypeElement = document.getElementById("device-type");
     if (isMobile) {
         deviceTypeElement.textContent = "移动设备";
-        localStorage.setItem("maxStops", getRandomInt(25, 26).toString());
+        localStorage.setItem("maxStops", getRandomInt(24, 26).toString());
     } else {
         deviceTypeElement.textContent = "电脑设备";
-        localStorage.setItem("maxStops", getRandomInt(36, 40).toString());
+        localStorage.setItem("maxStops", getRandomInt(31, 35).toString());
     }
 }
 
