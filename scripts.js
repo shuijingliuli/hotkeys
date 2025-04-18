@@ -23,6 +23,8 @@ let countdownMax = 80;
 const hotkeysFilePath = "hotkeys.json";
 // 倒计时 worker
 let countdownWorker;
+let searchNum = getRandomInt(4,5);
+console.log(`页面刷新将在${searchNum}次搜索后`);
 
 // 生成指定范围内的随机整数
 function getRandomInt(min, max) {
@@ -36,10 +38,10 @@ function detectDevice() {
     const deviceTypeElement = document.getElementById("device-type");
     if (isMobile) {
         deviceTypeElement.textContent = "移动设备";
-        localStorage.setItem("maxStops", getRandomInt(21, 24).toString());
+        localStorage.setItem("maxStops", getRandomInt(25, 26).toString());
     } else {
         deviceTypeElement.textContent = "电脑设备";
-        localStorage.setItem("maxStops", getRandomInt(30, 33).toString());
+        localStorage.setItem("maxStops", getRandomInt(36, 40).toString());
     }
 }
 
@@ -214,10 +216,10 @@ async function startAutoSearch() {
                     setTimeout(() => {
                         window.location.href = "https://lingtu.gitlab.io/";
                     }, 6000);
-                } else if (completedSearches % 3 === 0) {
+                } else if (completedSearches % searchNum === 0) {
                     setTimeout(() => {
                         window.location.reload();
-                    }, 8000);
+                    }, 6000);
                 } else {
                     startCountdown();
                 }
